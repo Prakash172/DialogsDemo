@@ -4,14 +4,40 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button showDialogBtn, showDialogBuilderBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        showInputDialog();
+        showDialogBtn = findViewById(R.id.dialog_fragment_btn);
+        showDialogBuilderBtn = findViewById(R.id.dialog_builder_btn);
+
+
+        showDialogBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog();
+            }
+        });
+        showDialogBuilderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogFromBuilder();
+            }
+        });
+
+    }
+
+    private void showDialogFromBuilder() {
+        HelpDialogFragment helpDialogFragment = HelpDialogFragment.newInstance();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        helpDialogFragment.show(transaction,"help");
     }
 
     public void showInputDialog(){

@@ -44,6 +44,14 @@ public class InputDialogFragment extends DialogFragment {
                 }
             }
         });
+        Button cancel = view.findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(inputDialogFragment != null)
+                   inputDialogFragment.dismiss();
+            }
+        });
 
         return view;
     }
